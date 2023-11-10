@@ -20,8 +20,9 @@ public class Main {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                     
                 }
-                max = Math.max(max, dp[i]);
+                
             }
+            max = Math.max(max, dp[i]);
         }
         System.out.println(max);
     }

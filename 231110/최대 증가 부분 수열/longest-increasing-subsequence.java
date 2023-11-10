@@ -18,8 +18,9 @@ public class Main {
             for(int j = 0; j < i; j++) {
                 if(board[i] > board[j]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
-                    max = Math.max(max, dp[i]);
+                    
                 }
+                max = Math.max(max, dp[i]);
             }
         }
         System.out.println(max);

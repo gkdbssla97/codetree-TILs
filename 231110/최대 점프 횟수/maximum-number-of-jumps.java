@@ -15,12 +15,17 @@ public class Main {
             board[i] = Integer.parseInt(s[i]);
         }
         int max = 0;
-        for(int i = 0; i < n; i++) {
+        boolean flag;
+        for(int i = 1; i < n; i++) {
+            
             for(int j = 0; j < i; j++) {
-                if(board[j] == 0) break;
+                
                 if(j + board[j] >= i) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
+            }
+            if(dp[i] == 0) {
+                break;
             }
             max = Math.max(max, dp[i]);
         }

@@ -17,21 +17,24 @@ public class Main {
             board[i][1] = end;
         }
 
-        Arrays.sort(board, (o1, o2) -> Integer.compare(o1[0], o2[0]));
-
+        Arrays.sort(board, (o1, o2) -> {
+            if(o1[0] == o2[0]) {
+                return Integer.compare(o1[1], o2[1]);
+            } return Integer.compare(o1[0], o2[0]);
+        });
+        
         int end = -1;
         int cnt = 0;
         int max = 0;
         Arrays.fill(dp, 1);
-        // for(int j = 1; j < n; j++) {
+        for(int j = 1; j < n; j++) {
             for(int i = 0; i < n; i++) {
-                if(board[i][0] > end) {
-                    end = board[i][1];
-                    cnt++;
+                if(board[j][0] > board[i][1]) {
+                    dp[j] = Math.max(dp[j], dp[i] + 1);
+                    max = Math.max(max, dp[j]);
                 } 
             }
-            // max = Math.max(max, cnt);
-        // }
-        System.out.println(cnt);
+        }
+        System.out.println(max);
     }
 }

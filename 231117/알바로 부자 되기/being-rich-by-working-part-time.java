@@ -18,22 +18,28 @@ public class Main {
             board[i][1] = e;
             board[i][2] = p;
 
-            dp[i] = p;
+            
         }
         Arrays.sort(board, (o1, o2) -> {
             if(o1[0] == o2[0]) {
                 Integer.compare(o1[1], o2[1]);
             } return Integer.compare(o1[0], o2[0]);
         });
+        for(int k = 0; k < n; k++) {
+            dp[k] = board[k][2];
+        }
+
         long max = -1;
         for(int i = 0; i < n; i++) {
+            
             for(int j = 0; j < i; j++) {
                if(board[j][1] < board[i][0]) {
-                    dp[i] += dp[j];
+                    dp[i] = Math.max(dp[i], dp[j] + board[i][2]);
                     max = Math.max(max, dp[i]);
                } 
             }
         }
+        // System.out.println(Arrays.toString(dp));
         System.out.println(Arrays.stream(dp).max().getAsLong());
     }
 }

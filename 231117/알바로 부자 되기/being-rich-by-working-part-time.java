@@ -7,7 +7,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         int[][] board = new int[n][3];
-        int[] dp = new int[n];
+        long[] dp = new long[n];
         for(int i = 0; i < n; i++) {
             String[] _s = br.readLine().split(" ");
             int s = Integer.parseInt(_s[0]);
@@ -25,7 +25,7 @@ public class Main {
                 Integer.compare(o1[1], o2[1]);
             } return Integer.compare(o1[0], o2[0]);
         });
-        int max = -1;
+        long max = -1;
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < i; j++) {
                if(board[j][1] < board[i][0]) {
@@ -34,6 +34,6 @@ public class Main {
                } 
             }
         }
-        System.out.println(Arrays.stream(dp).max().getAsInt());
+        System.out.println(Arrays.stream(dp).max().getAsLong());
     }
 }

@@ -21,12 +21,17 @@ public class Main {
 
         int end = -1;
         int cnt = 0;
-        for(int i = 0; i < n; i++) {
-            if(board[i][0] > end) {
-                end = board[i][1];
-                cnt++;
-            } else cnt = 0;
-        }
+        int max = 0;
+        Arrays.fill(dp, 1);
+        // for(int j = 1; j < n; j++) {
+            for(int i = 0; i < n; i++) {
+                if(board[i][0] > end) {
+                    end = board[i][1];
+                    cnt++;
+                } 
+            }
+            // max = Math.max(max, cnt);
+        // }
         System.out.println(cnt);
     }
 }

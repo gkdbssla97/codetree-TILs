@@ -35,9 +35,9 @@ public class Main {
             }
             // System.out.println(Arrays.toString(dp));
         }
-        for(int i = 0; i <= n; i++) {
-            System.out.println(Arrays.toString(dp[i]));
-        }
+        // for(int i = 0; i <= n; i++) {
+        //     System.out.println(Arrays.toString(dp[i]));
+        // }
         System.out.println(max);
     }
 }

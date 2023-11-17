@@ -28,10 +28,15 @@ public class Main {
             for(int j = 0; j <= m; j++) {
                 if(j >= board[i][0]) {
                     dp[i][j] = Math.max(dp[i - 1][j - board[i][0]] + board[i][1], dp[i - 1][j]);
+                } else {
+                    dp[i][j] = dp[i -1][j];
                 }
                 max = Math.max(dp[i][j], max);
             }
             // System.out.println(Arrays.toString(dp));
+        }
+        for(int i = 0; i <= n; i++) {
+            System.out.println(Arrays.toString(dp[i]));
         }
         System.out.println(max);
     }

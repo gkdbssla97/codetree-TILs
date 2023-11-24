@@ -23,11 +23,9 @@ public class Main {
             for(int j = 1; j <= n; j++) {
                 if(i - board[j][0] >= 0) {
                     dp[i] = Math.max(dp[i - board[j][0]] + board[j][1], dp[i]);
-                } else {
-                    dp[j] = dp[j- 1];
-                }
+                } 
             }
         }
-        System.out.println(dp[m]);
+        System.out.println(Arrays.stream(dp).max().getAsInt());
     }
 }

@@ -19,8 +19,8 @@ public class Main {
         for(int i = 1; i <= n; i++) {
             for(int j = 0; j <= sum; j++) {
                 if(j - board[i] >= 0) {
-                    dp[i][j] = Math.max(dp[i - 1][j - board[i]] + board[i], dp[i][j]);
-                } else dp[i][j] = dp[i - 1][j];
+                    dp[i][j] = Math.max(dp[i - 1][j - board[i]] + board[i], dp[i - 1][j]);
+                } 
             }
         }
         int res = Integer.MAX_VALUE;

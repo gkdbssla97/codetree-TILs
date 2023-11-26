@@ -29,25 +29,25 @@ public class Main {
 
         for(int i = 1; i <= n; i++) {
             int result = dijkstra(i, n, cost);
+            // System.out.println("----");
             System.out.println(result);
         }
     }
     static int dijkstra(int start, int n, int[] cost) {
         int max = 0;
         Queue<Node> q = new LinkedList<>();
-        q.offer(new Node(start, 1));
-        boolean[][] visited = new boolean[n + 1][n + 1];
+        q.offer(new Node(start, 1, String.valueOf(start)));
+        boolean[][][] visited = new boolean[n + 1][n + 1][n + 1];
         while(!q.isEmpty()) {
             Node p = q.poll();
-
+            System.out.println(p.route);
             max = Math.max(max, p.cnt);
 
             for(int i = 0; i < arr.get(p.idx).size(); i++) {
                 int next = arr.get(p.idx).get(i);
-                if(cost[next] > cost[p.idx] && !visited[p.idx][next]) {
-                    // visited[p.idx][next] = true;
-                    q.offer(new Node(next, p.cnt + 1));
-                    // System.out.println("route: " + next);
+                if(cost[next] > cost[p.idx] && !visited[start][p.idx][p.cnt]) {
+                    visited[start][p.idx][p.cnt] = true;
+                    q.offer(new Node(next, p.cnt + 1, p.route + String.valueOf(next)));
                 }
             }
         }
@@ -55,10 +55,11 @@ public class Main {
     }
     static class Node {
         int idx, cnt;
-
-        Node(int idx, int cnt) {
+        String route;
+        Node(int idx, int cnt, String route) {
             this.idx = idx;
             this.cnt = cnt;
+            this.route = route;
         }
     }
 }

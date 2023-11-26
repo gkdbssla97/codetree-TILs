@@ -40,7 +40,7 @@ public class Main {
         boolean[][][] visited = new boolean[n + 1][n + 1][n + 1];
         while(!q.isEmpty()) {
             Node p = q.poll();
-            System.out.println(p.route);
+            // System.out.println(p.route);
             max = Math.max(max, p.cnt);
 
             for(int i = 0; i < arr.get(p.idx).size(); i++) {

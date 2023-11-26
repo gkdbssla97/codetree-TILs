@@ -14,7 +14,7 @@ public class Main {
         
         int min = Integer.MAX_VALUE;
         for(int i = 0; i <= n - 4; i++) {
-            for(int j = i + 3; j < n; j++) {
+            for(int j = n - 1; j >= i + 3; j--) {
                 int left = i + 1;
                 int right = j - 1;
                 while(left < right) {

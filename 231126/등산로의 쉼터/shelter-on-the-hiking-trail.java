@@ -23,8 +23,13 @@ public class Main {
             s = br.readLine().split(" ");
             int start = Integer.parseInt(s[0]);
             int end = Integer.parseInt(s[1]);
-            arr.get(start).add(end);
-            arr.get(end).add(start);
+            if(cost[start] < cost[end]) {
+                arr.get(start).add(end);
+            }
+
+            if(cost[end] < cost[start]) {
+                arr.get(end).add(start);
+            }
         }
 
         for(int i = 1; i <= n; i++) {

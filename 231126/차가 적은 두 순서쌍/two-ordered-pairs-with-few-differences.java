@@ -6,36 +6,31 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         String[] s = br.readLine().split(" ");
-        int[] arr = new int[n];
+        int[] board = new int[n];
         for(int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(s[i]);
+            board[i] = Integer.parseInt(s[i]);
         }
-        Arrays.sort(arr);
+        Arrays.sort(board);
         
-        int left = 0, right = n - 1;
-        int minDiff = Integer.MAX_VALUE;
-        int a = 0, b = 0, c = 0, d = 0;
-        for (int i = 0; i < n - 3; i++) {
-            for (int j = i + 3; j < n; j++) {
-                left = i + 1;
-                right = j - 1;
-                while (left < right) {
-                    int sum = arr[i] + arr[j] - arr[left] - arr[right];
-                    if (Math.abs(sum) < minDiff) {
-                        minDiff = Math.abs(sum);
-                        a = arr[i];
-                        b = arr[j];
-                        c = arr[left];
-                        d = arr[right];
-                    }
-                    if (sum <= 0) {
-                        left++;
+        int min = Integer.MAX_VALUE;
+        for(int i = 0; i <= n - 4; i++) {
+            for(int j = i + 3; j < n; j++) {
+                int left = i + 1;
+                int right = j - 1;
+                while(left < right) {
+                    int L = board[i] - board[left];
+                    int R = board[j] - board[right];
+                    int sum = Math.abs(L - R);
+                    min = Math.min(min, Math.abs(sum));
+                    if(sum <= 0) {
+                        left++;    
                     } else {
                         right--;
                     }
+                    
                 }
             }
         }
-        System.out.println(minDiff);
+        System.out.println(min);
     }
 }

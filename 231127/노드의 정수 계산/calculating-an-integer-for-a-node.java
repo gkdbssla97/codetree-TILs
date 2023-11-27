@@ -30,7 +30,7 @@ public class Main {
             if(a == 1) {
                 cost[i + 2] = b;
             } else {
-                cost[i + 2] = 0;
+                cost[i + 2] = -b;
             }
         }
         visited[1] = true;
@@ -50,7 +50,7 @@ public class Main {
 
         for(int i = 0; i < arr.get(x).size(); i++) {
             int y = arr.get(x).get(i);
-            if(parent[y] == x) {
+            if(parent[y] == x && dp[y] > 0) {
                 dp[x] += dp[y];
             }
         }

@@ -19,7 +19,6 @@ public class Main {
         }
 
         Arrays.sort(board);
-
         // System.out.println(Arrays.toString(board));
 
         for(int i = 0; i < t; i++) {
@@ -53,14 +52,15 @@ public class Main {
                 if(board[midE].startsWith(b)) {
                     left = midE;
                 } else if(board[midE].compareTo(b) < 0){
-                    left = midE + 1;
+                    left = midE;
                 } else {
                     right = midE - 1;
                 }
                 // System.out.println("l, r :" + left + " " + right);
             }
             int end = right;
-            // System.out.println(start + " " + end);
+            // if("aaaaaaaabao".equals(b)) System.out.println("l, r :" + start + " " + end);
+            // if("aaaaaaaabc".equals(b)) System.out.println("l, r :" + start + " " + end);
             if(start + a - 1 >= board.length || start + a - 1 > end) {
                 System.out.println(-1);
             } else if(index.get(board[start + a - 1]) != null) {

@@ -30,52 +30,37 @@ public class Main {
             //시작위치 검색
             int left = 0;
             int right = board.length - 1;
-            // int midS = -1;
-            // int start = -1;
-            // while(left <= right) {
-            //     midS = (left + right) / 2;
-
-            //     if(board[midS].startsWith(b)) {
-            //         left = midS + 1;
-            //     } else {
-            //         right = midS - 1;
-            //     }
-            // }
-            // start = midS;
-            // System.out.println("start: " + start);
-            // //끝 위치 검색
-            // left = start;
-            // right = board.length -1;
-            // int midE = -1;
-            // while(left <= right) {
-            //     midE = (left + right) / 2;
-
-            //     if(board[midE].startsWith(b)) {
-            //         break;
-            //     } else {
-            //         left = midE + 1;
-            //     }
-            // }
-            // int end = midE;
+            int midS = -1;
             int start = -1;
-            int end = -1;
-            while(left <= right) {
-                if(board[left].startsWith(b) && board[right].startsWith(b)) {
-                    start = left;
-                    end = right;
-                    break;
-                } else if(board[left].startsWith(b)) {
-                    start = left;
-                    right--;
-                } else if(board[right].startsWith(b)) {
-                    end = right;
-                    left++;
+            while(left < right) {
+                midS = (left + right) / 2;
+                if(board[midS].startsWith(b)) {
+                    right = midS;
+                } else if(board[midS].compareTo(b) < 0){
+                    left = midS + 1;
                 } else {
-                    right--;
-                    left++;
+                    right = midS;
                 }
             }
-            // if(b.equals("q")) System.out.println(start + " " + end);
+            start = left;
+            // System.out.println("start: " + start);
+            //끝 위치 검색
+            left = 0;
+            right = board.length -1;
+            int midE = -1;
+            while(left < right) {
+                midE = (left + right + 1) / 2;
+                if(board[midE].startsWith(b)) {
+                    left = midE;
+                } else if(board[midE].compareTo(b) < 0){
+                    left = midE + 1;
+                } else {
+                    right = midE - 1;
+                }
+                // System.out.println("l, r :" + left + " " + right);
+            }
+            int end = right;
+            // System.out.println(start + " " + end);
             if(start + a - 1 >= board.length || start + a - 1 > end) {
                 System.out.println(-1);
             } else if(index.get(board[start + a - 1]) != null) {

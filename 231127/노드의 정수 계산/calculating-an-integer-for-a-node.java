@@ -30,7 +30,7 @@ public class Main {
             if(a == 1) {
                 cost[i + 2] = b;
             } else {
-                cost[i + 2] = -b;
+                cost[i + 2] = 0;
             }
         }
         visited[1] = true;

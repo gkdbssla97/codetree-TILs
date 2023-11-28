@@ -35,7 +35,7 @@ public class Main {
         visited[root] = true;
         dfs(root);
         
-        if(target == 0) System.out.println(0);
+        if(target == root) System.out.println(0);
         else System.out.println(dp[root]);
     }
     static int dfs(int start) {

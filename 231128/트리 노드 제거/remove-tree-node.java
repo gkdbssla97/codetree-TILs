@@ -34,23 +34,26 @@ public class Main {
         visited = new boolean[n];
         visited[root] = true;
         dfs(root);
+        
         if(target == 0) System.out.println(0);
         else System.out.println(dp[root]);
     }
     static int dfs(int start) {
         if(dp[start] != 0) {
-            return dp[start] = 1;
+            return dp[start];
         }
-
+        boolean isLeaf = true;
         for(int i = 0; i < arr.get(start).size(); i++) {
             int next = arr.get(start).get(i);
             if(!visited[next]) {
                 visited[next] = true;
                 if(next != target) {
                     dp[start] += dfs(next);
+                    isLeaf = false;
                 }
             }
         }
-        return 1;
+        if(isLeaf) return dp[start] = 1;
+        return dp[start];
     }
 }

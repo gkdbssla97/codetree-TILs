@@ -15,7 +15,8 @@ public class Main {
             arr.add(new ArrayList<>());
         }
         
-        int max = 10001;
+        int max = 0;
+        Set<Integer> set = new HashSet<>();
         for(int i = 0; i < m; i++) {
             String[] s = br.readLine().split(" ");
             int start = Integer.parseInt(s[0]);
@@ -24,15 +25,20 @@ public class Main {
             arr.get(start).add(end);
             int tmp = Math.max(start, end);
             max = Math.max(max, tmp);
+            set.add(start);
         }
-
+        Queue<Integer> q = new LinkedList<>(set);
+        // System.out.println("max: " + max);
         boolean flag = false;
-        for(int i = 1; i <= m; i++) {
-            visited = new boolean[10001];
-            visited[i] = true;
-            dfs(i);
-            int cnt = (int)(IntStream.rangeClosed(0, m).filter(e -> visited[e]).count());
-            if(cnt == max - 1) {
+        while(!q.isEmpty()) {
+            int p = q.poll();
+            // System.out.println(p);
+            visited = new boolean[max + 1];
+            visited[p] = true;
+            dfs(p);
+            int cnt = (int)(IntStream.rangeClosed(0, max).filter(e -> visited[e]).count());
+            // System.out.println(cnt);
+            if(cnt == max) {
                 flag = true;
                 break;
             }

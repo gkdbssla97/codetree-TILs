@@ -4,48 +4,61 @@ import java.util.stream.IntStream;
 
 public class Main {
     static ArrayList<ArrayList<Integer>> arr = new ArrayList<>();
-    static boolean[] visited;
+    static boolean[] visited, used;
+    static int[] deg;
+    static int root;
+    static boolean isTree = true;
     public static void main(String[] args) throws Exception {
         // 여기에 코드를 작성해주세요.
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
         int m = Integer.parseInt(br.readLine());
+        used = new boolean[10001];
+        visited = new boolean[10001];
+        deg = new int[10001];
 
         for(int i = 0; i <= 10_000; i++) {
             arr.add(new ArrayList<>());
         }
         
-        int max = 0;
-        Set<Integer> set = new HashSet<>();
         for(int i = 0; i < m; i++) {
             String[] s = br.readLine().split(" ");
             int start = Integer.parseInt(s[0]);
             int end = Integer.parseInt(s[1]);
 
             arr.get(start).add(end);
-            int tmp = Math.max(start, end);
-            max = Math.max(max, tmp);
-            set.add(start);
+            
+            used[start] = used[end] = true;
+            deg[end]++;
         }
-        Queue<Integer> q = new LinkedList<>(set);
-        // System.out.println("max: " + max);
-        boolean flag = false;
-        while(!q.isEmpty()) {
-            int p = q.poll();
-            // System.out.println(p);
-            visited = new boolean[max + 1];
-            visited[p] = true;
-            dfs(p);
-            int cnt = (int)(IntStream.rangeClosed(0, max).filter(e -> visited[e]).count());
-            // System.out.println(cnt);
-            if(cnt == max) {
-                flag = true;
-                break;
+        
+        for(int i = 1; i <= 10000; i++) {
+            if(used[i] && deg[i] == 0) {
+                if(root != 0) {
+                    isTree = false;
+                }
+                root = i;
             }
         }
-        if(flag) System.out.println(1);
+        if(root == 0) {
+            isTree = false;
+        }
+        for(int i = 1; i <= 10000; i++) {
+            if(used[i] && i != root && deg[i] != 1) {
+                isTree = false;
+            }
+        }
+        if(isTree && root != 0) {
+            visited[root] = true;
+            dfs(root);
+        }
+        for(int i = 1; i <= 10000; i++) {
+            if(used[i] && !visited[i]) isTree = false;
+        }
+        if(isTree) System.out.println(1);
         else System.out.println(0);
     }
+
     static void dfs(int start) {
 
         for(int i = 0; i < arr.get(start).size(); i++) {
@@ -55,5 +68,7 @@ public class Main {
                 dfs(next);
             }
         }
+
+        return;
     }
 }

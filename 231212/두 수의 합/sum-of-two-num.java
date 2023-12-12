@@ -16,14 +16,14 @@ public class Main {
             int key = Integer.parseInt(s[i]);
             map.put(key, 0);
         }
-        boolean[] visited = new boolean[100_001];
+        
         int cnt = 0;
         for(int i = 0; i < n; i++) {
             int key = Integer.parseInt(s[i]);
-            if(map.containsKey(k - key) && !visited[key] && !visited[k - key]) {
+            if(map.containsKey(k - key) && map.get(key) == 0 && map.get(k - key) == 0) {
                 cnt++;
-                visited[key] = true;
-                visited[k - key] = true;
+                map.put(key, 1);
+                map.put(k - key, 1);
             }
         }
         System.out.println(cnt);

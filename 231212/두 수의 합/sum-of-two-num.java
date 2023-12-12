@@ -1,31 +1,27 @@
 import java.util.*;
-import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] s = br.readLine().split(" ");
-
-        HashMap<Integer, Integer> map = new LinkedHashMap<>();
-
-        int n = Integer.parseInt(s[0]);
-        int k = Integer.parseInt(s[1]);
-        s = br.readLine().split(" ");
-
-        for(int i = 0; i < n; i++) {
-            int key = Integer.parseInt(s[i]);
-            map.put(key, 0);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
         }
-        
-        int cnt = 0;
-        for(int i = 0; i < n; i++) {
-            int key = Integer.parseInt(s[i]);
-            if(map.containsKey(k - key) && map.get(key) == 0 && map.get(k - key) == 0) {
-                cnt++;
-                map.put(key, 1);
-                map.put(k - key, 1);
+
+        System.out.println(countPairs(arr, k));
+    }
+
+    private static int countPairs(int[] arr, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        for(int num : arr) {
+            if(map.containsKey(k - num)) {
+                count += map.get(k - num);
             }
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
-        System.out.println(cnt);
+        return count;
     }
 }

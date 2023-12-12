@@ -18,7 +18,7 @@ public class Main {
         for(int i = 0; i < s.length; i++) {
             int key = Integer.parseInt(s[i]);
             if(map.containsKey(key)) System.out.print(map.get(key) + " ");
-            else System.out.println(0);
+            else System.out.print(0 + " ");
         }
     }
 }

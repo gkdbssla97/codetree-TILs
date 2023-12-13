@@ -14,19 +14,32 @@ public class Main {
             int key = Integer.parseInt(s[i]);
             map.put(key, map.getOrDefault(key, 0) + 1);
         }
-        List<Map.Entry<Integer, Integer>> entry = new ArrayList<>(map.entrySet());
-        entry.sort(Map.Entry.<Integer, Integer>comparingByValue().reversed()
-            .thenComparing(Map.Entry.comparingByKey(Comparator.reverseOrder())));
 
-        HashMap<Integer, Integer> sorted = new LinkedHashMap<>();
-        for(Map.Entry<Integer, Integer> e : entry) {
-            sorted.put(e.getKey(), e.getValue());
+        ArrayList<Node> arr = new ArrayList<>();
+        for(Integer key : map.keySet()) {
+            arr.add(new Node(key, map.get(key)));
+        }   
+        Collections.sort(arr, (o1, o2) -> {
+            if(o1.value == o2.value) {
+                return o2.key - o1.key; 
+            } return o2.value - o1.value;
+        });
+         
+        for(int i = 0; i < k; i++) {
+            System.out.print(arr.get(i).key + " ");
         }
-        int cnt = 0;
-        for(Map.Entry<Integer, Integer> sEntry : sorted.entrySet()) {
-            if(cnt == k) break;
-            System.out.print(sEntry.getKey() + " ");
-            cnt++;
+    }
+    static class Node {
+        int key, value;
+
+        Node(int key, int value) {
+            this.key = key;
+            this.value = value;
         }
     }
 }
+/**
+3, 2
+2, 1
+1, 2
+**/

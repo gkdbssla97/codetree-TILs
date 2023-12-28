@@ -32,13 +32,16 @@ public class Main {
             int a = ints[0];
             int b = ints[1];
             HashSet<Integer> x = arr.get(board[a]);
-            x.add(b);
-            HashSet<Integer> y = arr.get(board[b]);
             x.add(a);
+            HashSet<Integer> y = arr.get(board[b]);
+            x.add(b);
             int tmp = board[b];
             board[b] = board[a];
             board[a] = tmp;
-            
+            x = arr.get(board[a]);
+            x.add(b);
+            y = arr.get(board[b]);
+            x.add(a);
         }
         HashSet<Integer> hashSet = arr.get(1);
         for(int i = 1; i <= n; i++) {

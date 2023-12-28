@@ -26,7 +26,7 @@ public class Main {
             int b = Integer.parseInt(s[1]);
             z.add(new int[]{a, b});
         }
-        for(int i = 0; i <= 3 * k; i++) {
+        for(int i = 0; i < 3 * k; i++) {
             // System.out.println("i : " + (i + 1) + " " + Arrays.toString(board));
             int[] ints = z.get(i % k);
             int a = ints[0];

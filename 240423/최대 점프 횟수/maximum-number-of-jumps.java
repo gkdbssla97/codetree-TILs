@@ -7,20 +7,20 @@ public class Main {
         BufferedReader br = new BufferedReader(new  InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
-        int[] board = new int[n + 1];
-        int[] dp = new int[n + 1];
+        int[] board = new int[n];
+        int[] dp = new int[n];
 
         String[] s = br.readLine().split(" ");
         for(int i = 0; i < n; i++) {
-            board[i + 1] = Integer.parseInt(s[i]);
+            board[i] = Integer.parseInt(s[i]);
         }
-
-        for(int i = 1; i <= n; i++) {
-            for(int j = i + 1; j <= i + board[i]; j++) {
-                if(j > n) {
-                    dp[n] = Math.max(dp[n], dp[n - 1]);
-                } else {
-                    dp[j] = Math.max(dp[j], dp[i] + 1);
+        Arrays.fill(dp, Integer.MIN_VALUE);
+        dp[0] = 0;
+        for(int i = 1; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                if(dp[j] == Integer.MIN_VALUE) continue;
+                if(j + board[j] >= i) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
         }

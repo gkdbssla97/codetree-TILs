@@ -22,6 +22,6 @@ public class Main {
                 }
             }
         }
-        System.out.println(Arrays.toString(dp));
+        System.out.println(Arrays.stream(dp).map(e -> e).max().getAsInt());
     }
 }

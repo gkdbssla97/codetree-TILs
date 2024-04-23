@@ -20,11 +20,14 @@ public class Main {
             }
         }
 
+        
+        for(int i = 0; i <= n; i++) {
+            Arrays.fill(dp[i], Integer.MIN_VALUE);
+        }
         dp[1][1] = 1;
-
-        for(int i = 0; i <= n ; i++) {
-            for(int j = 0; j <= m; j++) {
-
+        for(int i = 1; i <= n ; i++) {
+            for(int j = 1; j <= m; j++) {
+                if(dp[i][j] == Integer.MIN_VALUE) continue;
                 for(int x = i + 1; x <= n; x++) {
                     for(int y = j + 1; y <= m; y++) {
                         if(board[x][y] > board[i][j]) {

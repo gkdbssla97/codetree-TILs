@@ -37,20 +37,29 @@ public class Main {
             }
         }
 
-        // for(int i = 0; i <= n; i++) {
-        //     System.out.print(dp[i][0] + " ");
-        // } System.out.println();
+        int left = 0;
+        for(int i = 0; i <= n; i++) {
+            // System.out.print(dp[i][0] + " ");
+            left = Math.max(left, dp[i][0]);
+        }
+        // System.out.println();
 
-        // for(int i = 0; i <= n; i++) {
-        //     System.out.print(dp[i][1] + " ");
-        // } System.out.println();
+        int right = 0;
+        for(int i = 0; i <= n; i++) {
+            // System.out.print(dp[i][1] + " ");
+            right = Math.max(right, dp[i][1]);
+        } 
+        // System.out.println();
         // 왼쪽에서부터, 오른쪽에서부터 중간에 만나는 교차점은 어떻게 판단?
         // 선형탐색으로 그냥 최댓값인거 찾아내면됨 
 
         int max = 0;
-        for(int i = 1; i <= n / 2; i++) {
-            max = Math.max(max, dp[i][0] + dp[n + 1 - i][1]);
+        for(int i = 1; i <= n; i++) {
+            int v = dp[i][0];
+            for(int j = i + 1; j <= n; j++) {
+                max = Math.max(max, v + dp[j][1]);
+            }
         }
-        System.out.println(max);
+        System.out.println(Math.max(max, Math.max(right, left)));
     }
 }

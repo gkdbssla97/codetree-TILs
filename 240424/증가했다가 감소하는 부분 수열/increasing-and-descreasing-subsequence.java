@@ -14,52 +14,49 @@ public class Main {
         for(int i = 0; i < n; i++) {
             board[i + 1] = Integer.parseInt(s[i]);
         }
-        for(int i = 0; i <= n; i++) {
-            Arrays.fill(dp[i], 0);
-        }
+    
 
         // 1. 증가 -> 감소 
-        dp[1][0] = 1;
         for(int i = 1; i <= n; i++) {
-            for(int j = 0; j < i; j++) {
+            dp[i][0] = 1;
+            for(int j = 1; j < i; j++) {
                 if(board[j] < board[i]) {
                     dp[i][0] = Math.max(dp[i][0], dp[j][0] + 1);
                 }
             }
         }
         // 2. 감소 -> 증가 
-        dp[1][1] = 1;
         for(int i = n; i >= 1; i--) {
-            for(int j = n + 1; j > i; j--) {
+            dp[i][1] = 1;
+            for(int j = i + 1; j <= n; j++) {
                 if(board[j] < board[i]) {
                     dp[i][1] = Math.max(dp[i][1], dp[j][1] + 1);
                 }
             }
         }
 
-        int left = 0;
-        for(int i = 0; i <= n; i++) {
-            // System.out.print(dp[i][0] + " ");
-            left = Math.max(left, dp[i][0]);
-        }
+        // int left = 0;
+        // for(int i = 1; i <= n; i++) {
+        //     System.out.print(dp[i][0] + " ");
+        //     // left = Math.max(left, dp[i][0]);
+        // }
         // System.out.println();
 
-        int right = 0;
-        for(int i = 0; i <= n; i++) {
-            // System.out.print(dp[i][1] + " ");
-            right = Math.max(right, dp[i][1]);
-        } 
+        // int right = 0;
+        // for(int i = 1; i <= n; i++) {
+        //     System.out.print(dp[i][1] + " ");
+        //     // right = Math.max(right, dp[i][1]);
+        // } 
         // System.out.println();
         // 왼쪽에서부터, 오른쪽에서부터 중간에 만나는 교차점은 어떻게 판단?
         // 선형탐색으로 그냥 최댓값인거 찾아내면됨 
 
         int max = 0;
         for(int i = 1; i <= n; i++) {
-            int v = dp[i][0];
-            for(int j = i + 1; j <= n; j++) {
-                max = Math.max(max, v + dp[j][1]);
-            }
+            
+            max = Math.max(max, dp[i][0] + dp[i][1] - 1);
+            
         }
-        System.out.println(Math.max(max, Math.max(right, left)));
+        System.out.println(max);
     }
 }

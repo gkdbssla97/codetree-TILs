@@ -17,8 +17,8 @@ public class Main {
             board[i + 1] = Integer.parseInt(s[i]);
         }
         dp[0] = 0;
-        for(int i = 0; i <= m; i++) {
-            for(int j = 0; j < n; j++) {
+        for(int i = 1; i <= m; i++) {
+            for(int j = 1; j <= n; j++) {
                 if(i - board[j] >= 0) {
                     if(dp[i - board[j]] == 100_001) continue;
                     dp[i] = Math.min(dp[i], dp[i - board[j]] + 1);

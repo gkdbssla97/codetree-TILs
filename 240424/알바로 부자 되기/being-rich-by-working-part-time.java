@@ -23,10 +23,11 @@ public class Main {
         for(int i = 1; i <= n; i++) {
             for(int j = 1; j < i; j++) {
                 if(board[j][1] < board[i][0]) {
-                    dp[i] = Math.max(dp[i], dp[j] + board[j][2]);
+                    dp[i] = Math.max(dp[i], dp[j] + board[i][2]);
                 }
             }
         }
+        // System.out.println(Arrays.toString(dp));
         System.out.println(Arrays.stream(dp).map(e -> e).max().getAsInt());
     }
 }

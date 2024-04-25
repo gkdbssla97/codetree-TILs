@@ -25,7 +25,7 @@ public class Main {
         }
         
         int res = -1;
-        if(dp[m] != res) res = dp[m];
+        if(dp[m] != 0) res = dp[m];
         System.out.println(dp[m]);
     }
 }

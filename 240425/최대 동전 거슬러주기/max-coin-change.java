@@ -26,6 +26,6 @@ public class Main {
         
         int res = -1;
         if(dp[m] != 0) res = dp[m];
-        System.out.println(dp[m]);
+        System.out.println(res);
     }
 }

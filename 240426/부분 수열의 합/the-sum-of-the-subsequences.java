@@ -15,18 +15,18 @@ public class Main {
         for(int i = 0; i < n; i++) {
             board[i] = Integer.parseInt(s[i]);
         }
-        Arrays.fill(dp, 10001);
+        Arrays.fill(dp, Integer.MIN_VALUE);
         dp[0] = 0;
         for(int i = 0; i < n; i++) {
             for(int j = m; j >= 0; j--) {
                 if(j - board[i] >= 0) {
-                    dp[j] = Math.min(dp[j], dp[j - board[i]] + 1);
+                    dp[j] = Math.max(dp[j], dp[j - board[i]] + 1);
                 }
             }
         }
         // System.out.println(Arrays.toString(dp));
         String str = "No";
-        if(dp[m] != 10001) str = "Yes";
+        if(dp[m] > 0) str = "Yes";
         System.out.println(str);
     }
 }

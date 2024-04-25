@@ -15,6 +15,7 @@ public class Main {
         for(int i = 0; i < n; i++) {
             board[i] = Integer.parseInt(s[i]);
         }
+        Arrays.fill(dp, Integer.MIN_VALUE);
         dp[0] = 0;
         for(int i = 0; i <= m; i++) {
             for(int j = 0; j < n; j++) {
@@ -25,7 +26,8 @@ public class Main {
         }
         
         int res = -1;
-        if(dp[m] != 0) res = dp[m];
+        if(dp[m] != Integer.MIN_VALUE) res = dp[m];
         System.out.println(res);
+        System.out.println(Arrays.toString(dp));
     }
 }

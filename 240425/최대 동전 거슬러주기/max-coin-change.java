@@ -28,6 +28,6 @@ public class Main {
         int res = -1;
         if(dp[m] != Integer.MIN_VALUE) res = dp[m];
         System.out.println(res);
-        System.out.println(Arrays.toString(dp));
+        // System.out.println(Arrays.toString(dp));
     }
 }
